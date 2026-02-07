@@ -1,0 +1,288 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseHead from '../../components/BaseHead.astro';
+import CategorySidebar from '../../components/CategorySidebar.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import Header from '../../components/Header.astro';
+import { CATEGORIES } from '../../categories';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+
+const allPosts = (await getCollection('blog'))
+	.filter((p) => p.id !== 'tags-reference')
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Category and year/month from URL (for initial active state; filtering is client-side for static)
+const categorySlug = Astro.url.searchParams.get('category');
+const yearSlug = Astro.url.searchParams.get('year');
+const monthSlug = Astro.url.searchParams.get('month');
+
+const tagToCategory = new Map<string, string>();
+CATEGORIES.forEach((cat) => {
+	const slug = cat.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-$/, '');
+	cat.tags.forEach((tag) => tagToCategory.set(tag.toLowerCase(), slug));
+});
+
+// For static build, we always pass all posts; client script filters by ?category=
+function getPostCategories(post: (typeof allPosts)[0]): string[] {
+	const tags = (post.data.tags ?? []).map((t: string) => t.toLowerCase());
+	const cats = new Set<string>();
+	tags.forEach((tag) => {
+		const cat = tagToCategory.get(tag);
+		if (cat) cats.add(cat);
+	});
+	return Array.from(cats);
+}
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style is:global>
+			/* Left-align body content on blog index */
+			.blog-index-page {
+				margin-left: 0 !important;
+				margin-right: auto !important;
+			}
+			/* Header: same left and right padding */
+			.blog-index-page header nav {
+				padding-left: 6.75rem !important;
+				padding-right: 6.75rem !important;
+			}
+			/* Blog layout: 85% articles, 15% sidebar */
+			.blog-index-page .blog-layout {
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+				width: 100%;
+			}
+			@media (min-width: 1024px) {
+				.blog-index-page .blog-layout {
+					flex-direction: row;
+					align-items: flex-start;
+					gap: 0;
+				}
+			}
+			.blog-index-page .blog-main {
+				width: 100%;
+			}
+			@media (min-width: 1024px) {
+				.blog-index-page .blog-main {
+					width: 85%;
+					flex-shrink: 0;
+				}
+			}
+			.blog-index-page main {
+				flex: 1;
+				min-width: 0;
+				width: 100% !important;
+				max-width: none !important;
+				margin: 0 !important;
+				padding: 2rem 6.75rem 4rem 6.75rem;
+				box-sizing: border-box;
+			}
+			@media (min-width: 768px) {
+				.blog-index-page main {
+					padding: 4rem 6.75rem 4rem 6.75rem;
+				}
+			}
+			@media (min-width: 1024px) {
+				.blog-index-page main {
+					padding-right: 1.5rem;
+				}
+			}
+			/* Grid: smaller gap = bigger cards, similar to Wisp */
+			.post-grid {
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 3rem;
+				justify-items: start;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				text-align: left;
+				width: 100%;
+			}
+			@media (min-width: 768px) {
+				.post-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+			@media (min-width: 1024px) {
+				.post-grid {
+					gap: 5.5rem; /* slightly smaller than Wisp for bigger cards */
+				}
+			}
+			.post-card {
+				width: 100%;
+				max-width: 100%;
+			}
+			.post-card a {
+				text-decoration: none;
+				color: inherit;
+			}
+			/* Image: aspect-[16/9] */
+			.post-image {
+				aspect-ratio: 16 / 9;
+				overflow: hidden;
+				border-radius: 6px;
+			}
+			.post-image img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+			/* Content: gap-3 mt-4, left aligned, larger spacing for bigger feel */
+			.post-content {
+				display: flex;
+				flex-direction: column;
+				gap: 0.875rem;
+				margin-top: 1.25rem;
+				text-align: left;
+			}
+			/* Title: font-semibold tracking-tighter text-primary text-2xl md:text-3xl */
+			.post-title {
+				font-family: "Inter", system-ui, sans-serif;
+				font-weight: 600;
+				letter-spacing: -0.05em;
+				color: rgb(var(--black));
+				font-size: 1.5rem;   /* text-2xl */
+				line-height: 1.3;
+				margin: 0;
+			}
+			@media (min-width: 768px) {
+				.post-title {
+					font-size: 1.875rem;  /* md:text-3xl */
+				}
+			}
+			.post-card a:hover .post-title {
+				color: #E8B7A9;
+			}
+			/* Date: same font as snippet, size & color unchanged */
+			.post-date {
+				font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+				font-size: 1rem;
+				font-weight: 400;
+				font-style: italic;
+				letter-spacing: -0.05em;
+				color: hsl(240, 3.8%, 46.1%);
+				margin: 0;
+			}
+			@media (min-width: 1024px) {
+				.post-date {
+					font-size: 1.125rem;  /* prose prose-lg */
+				}
+			}
+			/* Snippet: same font color as date */
+			.post-snippet {
+				font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+				font-size: 16px;
+				font-weight: 400;
+				line-height: 1.65;
+				color: hsl(240, 3.8%, 46.1%);
+				margin: 0;
+				display: -webkit-box;
+				-webkit-line-clamp: 4;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body class="blog-index-page">
+		<Header />
+		<div class="blog-layout" style="max-width: var(--content-max); margin: 0 auto; padding: 0 1rem;">
+			<div class="blog-main">
+			<main>
+				<ul class="post-grid">
+				{
+					allPosts.map((post) => (
+						<li
+							class="post-card"
+							data-categories={getPostCategories(post).join(',')}
+							data-year={post.data.pubDate.getFullYear()}
+							data-month={(post.data.pubDate.getMonth() + 1).toString().padStart(2, '0')}
+						>
+							<a href={`/blog/${post.id}/`}>
+								<div class="post-image">
+									{post.data.heroImage ? (
+										<Image width={1200} height={675} src={post.data.heroImage} alt="" />
+									) : (
+										<div style="width:100%;height:100%;background:rgb(var(--gray-light));" />
+									)}
+								</div>
+								<div class="post-content">
+									<h2 class="post-title">{post.data.title}</h2>
+									<p class="post-date">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+									<p class="post-snippet">{post.data.description}</p>
+								</div>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</main>
+			</div>
+			<CategorySidebar
+				posts={allPosts}
+				activeCategory={categorySlug ?? undefined}
+				activeYear={yearSlug ?? undefined}
+				activeMonth={monthSlug ?? undefined}
+			/>
+			<script>
+				// Client-side filtering for static build (category + year/month)
+				function applyFilters() {
+					const params = new URLSearchParams(location.search);
+					const cat = params.get('category');
+					const year = params.get('year');
+					const month = params.get('month');
+					const cards = document.querySelectorAll('.post-card');
+					cards.forEach((card) => {
+						let show = true;
+						if (cat) {
+							const cats = (card.getAttribute('data-categories') || '').split(',');
+							show = cats.includes(cat);
+						}
+						if (show && year) {
+							show = card.getAttribute('data-year') === year;
+							if (show && month) show = card.getAttribute('data-month') === month;
+						}
+						(card as HTMLElement).style.display = show ? '' : 'none';
+					});
+					// Update active state on category links
+					document.querySelectorAll('.category-link').forEach((link) => {
+						link.classList.remove('active');
+						const href = link.getAttribute('href') || '';
+						const linkCat = href.includes('category=') ? new URL(href, location.origin).searchParams.get('category') : null;
+						if ((!cat && !linkCat) || (cat && linkCat === cat)) link.classList.add('active');
+					});
+					// Update active state on archive links
+					document.querySelectorAll('.archive-link').forEach((link) => {
+						link.classList.remove('active');
+						const href = link.getAttribute('href') || '';
+						const url = new URL(href, location.origin);
+						const linkYear = url.searchParams.get('year');
+						const linkMonth = url.searchParams.get('month');
+						if (linkYear === year && ((!month && !linkMonth) || (month && linkMonth === month))) link.classList.add('active');
+					});
+				}
+				document.addEventListener('DOMContentLoaded', applyFilters);
+				window.addEventListener('popstate', applyFilters);
+				document.addEventListener('click', (e) => {
+					const link = (e.target as HTMLElement).closest('a[href^="/blog"]');
+					if (link && (link.classList.contains('category-link') || link.classList.contains('archive-link'))) {
+						e.preventDefault();
+						const url = new URL(link.getAttribute('href')!, location.origin);
+						history.pushState({}, '', url.pathname + url.search);
+						applyFilters();
+					}
+				});
+			</script>
+		</div>
+		<Footer />
+	</body>
+</html>

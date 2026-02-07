@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Main circle with concentric rings - fills more of viewBox -->
+  <circle cx="16" cy="17" r="13" fill="none" stroke="#E8B7A9" stroke-width="2" />
+  <circle cx="16" cy="17" r="10" fill="none" stroke="#E8B7A9" stroke-width="0.5" opacity="0.9" />
+  <circle cx="16" cy="17" r="7.5" fill="none" stroke="#E8B7A9" stroke-width="0.5" opacity="0.9" />
+  <circle cx="16" cy="17" r="5" fill="none" stroke="#E8B7A9" stroke-width="0.5" opacity="0.9" />
+  <circle cx="16" cy="17" r="2.5" fill="none" stroke="#E8B7A9" stroke-width="0.5" opacity="0.9" />
+  <!-- Crown on top -->
+  <path d="M8 11 L10 5 L12 11 L16 3 L20 11 L22 5 L24 11 L24 12 L8 12 Z" fill="#E8B7A9" />
+</svg>

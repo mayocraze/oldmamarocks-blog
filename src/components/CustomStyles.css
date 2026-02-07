@@ -1,0 +1,49 @@
+body {
+    background-color: #fdfaf6;  /* soft cream background */
+    color: #333;
+    font-family: 'Merriweather', serif; /* body font */
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+h1, h2, h3 {
+    font-family: 'Inter', sans-serif; /* headings font */
+    font-weight: 600;
+    color: #111;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+header h1 {
+    font-family: 'Dancing Script', cursive; /* blog title font */
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #222;
+}
+
+a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 8px;
+    display: block;
+    margin: 1rem auto;
+}
+
+blockquote {
+    border-left: 3px solid #ccc;
+    padding-left: 1rem;
+    color: #555;
+    font-style: italic;
+    margin: 2rem 0;
+}
