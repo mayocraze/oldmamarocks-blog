@@ -15,78 +15,27 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			/* Wisp layout: max-w-6xl container, prose centered */
-			main {
-				max-width: var(--content-max);
-				margin: 0 auto;
-				padding: 0 1rem 4rem 1rem;
-			}
-			@media (min-width: 1024px) {
-				main {
-					padding-top: 5rem; /* lg:mt-20 */
-				}
-			}
-			.hero-image {
-				width: 100%;
-				margin-bottom: 2.5rem;
-			}
-			.hero-image img {
-				display: block;
-				width: 100%;
-				height: auto;
-				border-radius: 6px;
-				object-fit: cover;
-			}
-			/* Wisp: prose mx-auto, title first, content, date at bottom */
-			.prose {
-				width: 100%;
-				max-width: 720px;
-				margin: 0 auto;
-				margin-bottom: 2.5rem;
-			}
-			.prose h1 {
-				font-size: 2.25rem; /* lg:prose-h1:text-4xl approx */
-				line-height: 1.2;
-				margin: 0 0 1.5rem 0;
-			}
-			@media (min-width: 1024px) {
-				.prose h1 {
-					font-size: 2.25rem;
-				}
-			}
-			/* Date + updated at bottom like Wisp: text-sm opacity-40 mt-4 */
-			.post-meta {
-				max-width: 720px;
-				margin: 0 auto;
-				font-size: 0.875rem;
-				opacity: 0.4;
-				color: rgb(var(--gray-dark));
-			}
-			.post-meta .updated {
-				margin-top: 0.25rem;
-				font-style: italic;
-			}
-		</style>
 	</head>
 
-	<body>
+	<body class="min-h-screen">
 		<Header />
-		<main>
+		<main class="max-w-content mx-auto py-8 px-4 pb-16 sm:py-8 sm:px-6 md:py-12 md:px-8 lg:pt-20 lg:pb-16 lg:px-[6.75rem] box-border">
 			<article>
 				{heroImage && (
-					<div class="hero-image">
-						<Image width={1200} height={630} src={heroImage} alt="" />
+					<div class="w-full mb-10 rounded-md overflow-hidden">
+						<Image width={1200} height={630} src={heroImage} alt="" class="block w-full h-auto object-cover" />
 					</div>
 				)}
-				<div class="prose">
-					<h1>{title}</h1>
+				<div class="w-full max-w-prose mx-auto mb-10">
+					<h1 class="text-[1.75rem] sm:text-2xl md:text-[2.25rem] leading-tight m-0 mb-6 font-semibold text-gray-900">
+						{title}
+					</h1>
 					<slot />
 				</div>
-				<div class="post-meta">
+				<div class="max-w-prose mx-auto px-4 text-sm text-gray-600 opacity-60">
 					<FormattedDate date={pubDate} />
 					{updatedDate && (
-						<div class="updated">Updated <FormattedDate date={updatedDate} /></div>
+						<div class="mt-1 italic">Updated <FormattedDate date={updatedDate} /></div>
 					)}
 				</div>
 			</article>

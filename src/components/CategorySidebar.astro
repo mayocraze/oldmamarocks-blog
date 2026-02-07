@@ -49,12 +49,12 @@ const MONTH_NAMES = ['', 'January', 'February', 'March', 'April', 'May', 'June',
 const years = Array.from(yearMonthCounts.keys()).sort((a, b) => parseInt(b) - parseInt(a));
 ---
 
-<aside class="category-sidebar">
-	<h3 class="sidebar-title">Categories</h3>
-	<nav class="category-list">
+<aside class="w-full lg:w-[15%] lg:min-w-[200px] flex-shrink-0 pt-8 pb-12 px-4 sm:px-6 lg:pt-16 lg:pb-16 lg:pl-8 lg:pr-16 lg:border-l lg:border-gray-200 border-t border-gray-200 lg:border-t-0">
+	<h3 class="text-xs font-semibold uppercase tracking-wider text-gray-900 mb-4">Categories</h3>
+	<nav class="flex flex-col gap-2">
 		<a
 			href="/blog"
-			class:list={['category-link', { active: !activeCategory }]}
+			class:list={['category-link flex items-baseline gap-1 text-sm text-gray-500 no-underline hover:text-accent whitespace-nowrap', { 'text-gray-900 font-medium': !activeCategory }]}
 		>
 			All
 		</a>
@@ -64,36 +64,36 @@ const years = Array.from(yearMonthCounts.keys()).sort((a, b) => parseInt(b) - pa
 			return (
 				<a
 					href={`/blog?category=${encodeURIComponent(slug)}`}
-					class:list={['category-link', { active: activeCategory === slug }]}
+					class:list={['category-link flex items-baseline gap-1 text-sm text-gray-500 no-underline hover:text-accent whitespace-nowrap', { 'text-gray-900 font-medium': activeCategory === slug }]}
 				>
-					<span class="category-name">{cat.name}</span>
-					{count > 0 && <span class="category-count">({count})</span>}
+					<span>{cat.name}</span>
+					{count > 0 && <span class="text-xs opacity-80">({count})</span>}
 				</a>
 			);
 		})}
 	</nav>
-	<div class="year-month-section">
-		<p class="sidebar-label">By Year & Month</p>
-		<nav class="year-month-nav">
+	<div class="mt-8">
+		<p class="text-[0.75rem] font-semibold uppercase tracking-wider text-gray-900 mb-2">By Year & Month</p>
+		<nav class="flex flex-col gap-2">
 			{years.map((year) => {
 				const months = yearMonthCounts.get(year)!;
 				const yearTotal = Array.from(months.values()).reduce((a, b) => a + b, 0);
 				return (
-					<div class="year-group">
+					<div class="flex flex-col gap-1">
 						<a
 							href={`/blog?year=${year}`}
-							class:list={['archive-link', 'year-link', { active: activeYear === year && !activeMonth }]}
+							class:list={['archive-link year-link text-sm text-gray-500 no-underline hover:text-accent font-medium', { 'text-gray-900': activeYear === year && !activeMonth }]}
 							data-year={year}
 						>
 							{year} ({yearTotal})
 						</a>
-						<div class="months">
+						<div class="flex flex-col gap-0.5 pl-3">
 							{Array.from(months.entries())
 								.sort(([a], [b]) => parseInt(b) - parseInt(a))
 								.map(([month, count]) => (
 									<a
 										href={`/blog?year=${year}&month=${month}`}
-										class:list={['archive-link', 'month-link', { active: activeYear === year && activeMonth === month }]}
+										class:list={['archive-link month-link text-[0.85rem] text-gray-500 no-underline hover:text-accent', { 'text-gray-900 font-medium': activeYear === year && activeMonth === month }]}
 										data-year={year}
 										data-month={month}
 									>
@@ -107,102 +107,3 @@ const years = Array.from(yearMonthCounts.keys()).sort((a, b) => parseInt(b) - pa
 		</nav>
 	</div>
 </aside>
-
-<style>
-	.category-sidebar {
-		width: 15%;
-		min-width: 200px;
-		flex-shrink: 0;
-		padding: 4rem 4rem 4rem 2rem;
-		border-left: 1px solid rgba(0, 0, 0, 0.1);
-	}
-	@media (max-width: 1023px) {
-		.category-sidebar {
-			width: 100%;
-			padding: 0 6.75rem 2rem 6.75rem;
-			border-left: none;
-			border-top: 1px solid rgba(0, 0, 0, 0.1);
-		}
-	}
-	.sidebar-title {
-		font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-		font-size: 0.875rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		color: rgb(var(--black));
-		margin: 0 0 1rem 0;
-	}
-	.category-list {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-	.category-link {
-		font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-		font-size: 0.9rem;
-		color: hsl(240, 3.8%, 46.1%);
-		text-decoration: none;
-		display: flex;
-		align-items: baseline;
-		gap: 0.25rem;
-		white-space: nowrap;
-	}
-	.category-link:hover {
-		color: var(--accent);
-	}
-	.category-link.active {
-		color: rgb(var(--black));
-		font-weight: 500;
-	}
-	.category-count {
-		font-size: 0.8rem;
-		opacity: 0.8;
-	}
-	.year-month-section {
-		margin-top: 2rem;
-	}
-	.sidebar-label {
-		font-size: 0.75rem;
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.05em;
-		color: rgb(var(--black));
-		margin: 0 0 0.5rem 0;
-	}
-	.year-month-nav {
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
-	.year-group {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-	}
-	.year-link {
-		font-weight: 500;
-	}
-	.months {
-		display: flex;
-		flex-direction: column;
-		gap: 0.2rem;
-		padding-left: 0.75rem;
-	}
-	.month-link {
-		font-size: 0.85rem;
-	}
-	.archive-link {
-		font-family: Inter, ui-sans-serif, system-ui, sans-serif;
-		font-size: 0.9rem;
-		color: hsl(240, 3.8%, 46.1%);
-		text-decoration: none;
-	}
-	.archive-link:hover {
-		color: var(--accent);
-	}
-	.archive-link.active {
-		color: rgb(var(--black));
-		font-weight: 500;
-	}
-</style>

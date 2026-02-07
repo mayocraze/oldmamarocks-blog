@@ -1,140 +1,54 @@
-/*
-  Wisp-style editorial blog theme
-  Clean typography, soft backgrounds, Medium-like readability
- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-	--accent: #2563eb;
-	--accent-dark: #1d4ed8;
-	--black: 17, 24, 39;
-	--gray: 107, 114, 128;
-	--gray-light: 243, 244, 246;
-	--gray-dark: 55, 65, 81;
-	--cream: #fafaf9;
-	--prose-width: 720px;
-	--content-max: 72rem; /* max-w-6xl = 1152px, matches Wisp */
-	--box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-regular.woff") format("woff");
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: "Atkinson";
-	src: url("/fonts/atkinson-bold.woff") format("woff");
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
-
-body {
-	font-family: "Inter", system-ui, sans-serif;
-	margin: 0 auto;
-	padding: 0;
-	max-width: var(--content-max);
-	background: var(--cream);
-	color: rgb(var(--black));
-	font-size: 18px;
-	line-height: 1.75;
-}
-
-main {
-	width: var(--prose-width);
-	max-width: calc(100% - 3rem);
-	margin: 0 auto;
-	padding: 3rem 1.5rem;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	font-family: "Inter", system-ui, sans-serif;
-	font-weight: 600;
-	margin: 0 0 0.75rem 0;
-	color: rgb(var(--black));
-	line-height: 1.3;
-}
-h1 { font-size: 2.25rem; }
-h2 { font-size: 1.75rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
-h5 { font-size: 1.125rem; }
-h6 { font-size: 1rem; }
-
-a {
-	color: var(--accent);
-	text-decoration: none;
-}
-a:hover {
-	text-decoration: underline;
-}
-
-p {
-	margin-bottom: 1.5em;
-}
-.prose p {
-	margin-bottom: 1.75em;
-}
-
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 6px;
-}
-
-code {
-	font-family: "SF Mono", "Consolas", monospace;
-	font-size: 0.9em;
-	padding: 0.15em 0.4em;
-	background: rgba(0, 0, 0, 0.06);
-	border-radius: 4px;
-}
-
-pre {
-	padding: 1.25rem;
-	border-radius: 8px;
-	overflow-x: auto;
-	background: rgba(0, 0, 0, 0.04);
-}
-pre > code {
-	all: unset;
-	background: none;
-	padding: 0;
-}
-
-blockquote {
-	border-left: 3px solid var(--accent);
-	padding-left: 1rem;
-	margin: 1.5em 0;
-	color: rgb(var(--gray-dark));
-	font-style: italic;
-}
-
-hr {
-	border: none;
-	border-top: 1px solid rgba(0, 0, 0, 0.1);
-	margin: 2rem 0;
-}
-
-@media (max-width: 720px) {
+/* Base typography - prose content */
+@layer base {
 	body {
-		font-size: 16px;
+		@apply bg-cream text-gray-900 font-sans text-base sm:text-lg leading-relaxed mx-auto max-w-content;
 	}
-	main {
-		padding: 2rem 1rem;
+	h1, h2, h3, h4, h5, h6 {
+		@apply font-semibold text-gray-900 leading-tight;
+	}
+	a {
+		@apply text-accent no-underline;
+	}
+	a:hover {
+		@apply underline;
+	}
+	p {
+		@apply mb-6;
+	}
+	img {
+		@apply max-w-full h-auto rounded-md;
+	}
+	code {
+		@apply font-mono text-sm px-1.5 py-0.5 bg-gray-100 rounded;
+	}
+	pre {
+		@apply p-5 rounded-lg overflow-x-auto bg-gray-50;
+	}
+	pre code {
+		@apply bg-transparent p-0;
+	}
+	blockquote {
+		@apply border-l-4 border-accent pl-4 my-6 text-gray-600 italic;
+	}
+	hr {
+		@apply border-0 border-t border-gray-200 my-8;
 	}
 }
 
-.sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border: 0;
+@layer utilities {
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
 }

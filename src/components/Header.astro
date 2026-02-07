@@ -3,73 +3,14 @@ import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 ---
 
-<header>
-	<nav>
-		<h2><a href="/blog">{SITE_TITLE}</a></h2>
-		<div class="nav-links">
+<header class="mt-8 mb-12 md:mt-16 md:mb-12 bg-transparent">
+	<nav class="flex items-center justify-between gap-4 w-full min-w-0 px-4 sm:px-6 lg:px-[6.75rem] max-w-content mx-auto box-border">
+		<h2 class="min-w-0 flex-shrink text-[1.75rem] sm:text-2xl md:text-3xl lg:text-[3.75rem] font-bold tracking-tight leading-tight">
+			<a href="/blog" class="no-underline text-inherit">{SITE_TITLE}</a>
+		</h2>
+		<div class="flex items-center flex-shrink-0 gap-4 md:gap-8">
 			<HeaderLink href="/blog">Blog</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
 	</nav>
 </header>
-<style>
-	header {
-		margin: 0;
-		padding: 2rem 0 3rem 0;  /* mt-8 mb-12 */
-		background: transparent;
-	}
-	@media (min-width: 768px) {
-		header {
-			padding: 4rem 0 3rem 0;  /* md:mt-16 mb-12 */
-		}
-	}
-	/* Blog title - matches Wisp "Travel." exactly: text-4xl md:text-6xl font-bold tracking-tighter leading-tight */
-	h2 {
-		margin: 0;
-		font-family: "Inter", system-ui, sans-serif;
-		font-size: 2.25rem;   /* text-4xl = 36px */
-		font-weight: 700;     /* font-bold */
-		letter-spacing: -0.05em;  /* tracking-tighter */
-		line-height: 1.25;    /* leading-tight */
-	}
-	@media (min-width: 768px) {
-		h2 {
-			font-size: 3.75rem;  /* md:text-6xl = 60px */
-		}
-	}
-	h2 a {
-		text-decoration: none;
-		color: inherit;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		width: 100%;
-		padding: 0 1rem;  /* px-4, aligns with Wisp */
-	}
-	.nav-links {
-		display: flex;
-		align-items: center;
-	}
-	.nav-links a {
-		margin-left: 1rem;   /* ml-4 - space from pipe and between links */
-		font-family: "Inter", system-ui, sans-serif;
-		font-size: 1rem;     /* base = 16px, matches Wisp */
-		font-weight: 400;
-		color: rgb(var(--gray-dark));
-		text-decoration: none;
-	}
-	@media (min-width: 768px) {
-		.nav-links a {
-			margin-left: 2rem;  /* md:ml-8 */
-		}
-	}
-	.nav-links a:hover {
-		color: rgb(var(--black));  /* hover:text-gray-900 */
-	}
-	.nav-links a.active {
-		font-weight: 600;  /* font-semibold when active */
-		color: rgb(var(--black));
-	}
-</style>
