@@ -1,7 +1,7 @@
 ---
-title: 'Tags Reference'
-description: 'Reference file for Obsidian tag autocomplete - not a blog post'
-pubDate: '2020-01-01'
+title: Tags Reference
+description: Reference file for Obsidian tag autocomplete - not a blog post
+pubDate: 2020-01-01
 ---
 
 # Blog Tags Reference

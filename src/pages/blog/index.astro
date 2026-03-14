@@ -54,7 +54,7 @@ function getPostCategories(post: (typeof allPosts)[0]): string[] {
 								data-year={post.data.pubDate.getFullYear()}
 								data-month={(post.data.pubDate.getMonth() + 1).toString().padStart(2, '0')}
 							>
-								<a href={`/blog/${post.id}/`} class="group block no-underline text-inherit">
+								<a href={`/blog/${post.id}/`} class="group block no-underline hover:no-underline text-inherit">
 									<div class="aspect-video overflow-hidden rounded-md">
 										{post.data.heroImage ? (
 											<Image width={1200} height={675} src={post.data.heroImage} alt="" class="w-full h-full object-cover block" />

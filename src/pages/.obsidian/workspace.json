@@ -1,24 +1,20 @@
 {
   "main": {
-    "id": "a1917527d6e6d621",
+    "id": "ccbeea8082ab082f",
     "type": "split",
     "children": [
       {
-        "id": "907d8627beb42927",
+        "id": "9882f2190427a112",
         "type": "tabs",
         "children": [
           {
-            "id": "ae9af1ac2262171a",
+            "id": "38c286857b048554",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "tags-reference.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "tags-reference"
+              "title": "New tab"
             }
           }
         ]
@@ -27,15 +23,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "c099a0de324efe00",
+    "id": "3e3e17add5c20ce2",
     "type": "split",
     "children": [
       {
-        "id": "d043242238b20ace",
+        "id": "8e1318505157bdb3",
         "type": "tabs",
         "children": [
           {
-            "id": "39fd3257ff0c0541",
+            "id": "854fce1972875b23",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -48,7 +44,7 @@
             }
           },
           {
-            "id": "1321ed6063a53ae3",
+            "id": "0fc97c64c02e9657",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -65,7 +61,7 @@
             }
           },
           {
-            "id": "0bd0fe20685e3fd9",
+            "id": "d81d6b36c4f85c44",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -81,20 +77,19 @@
     "width": 300
   },
   "right": {
-    "id": "2eff88ade3f19c5b",
+    "id": "5b09a20c0c114bf5",
     "type": "split",
     "children": [
       {
-        "id": "e2e58243e37af30f",
+        "id": "1ffec30bb8a74866",
         "type": "tabs",
         "children": [
           {
-            "id": "56f4cdf4d55ba7fa",
+            "id": "189c36645595fc64",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "US Economy, Equity, Gold, and the new FED chairman.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,25 +99,24 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for US Economy, Equity, Gold, and the new FED chairman"
+              "title": "Backlinks"
             }
           },
           {
-            "id": "2aaa6b256b9c3014",
+            "id": "625dde405ac8bbee",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "US Economy, Equity, Gold, and the new FED chairman.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from US Economy, Equity, Gold, and the new FED chairman"
+              "title": "Outgoing links"
             }
           },
           {
-            "id": "e120a5a219769827",
+            "id": "a7f0c2a7b62724e0",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -137,7 +131,7 @@
             }
           },
           {
-            "id": "5e0edc5073cf219a",
+            "id": "e2f3b2d0c2248ef5",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -151,18 +145,17 @@
             }
           },
           {
-            "id": "fd2887ad4884444d",
+            "id": "d05a470c4a7f47f2",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "US Economy, Equity, Gold, and the new FED chairman.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of US Economy, Equity, Gold, and the new FED chairman"
+              "title": "Outline"
             }
           }
         ]
@@ -183,13 +176,9 @@
       "bases:Create new base": false
     }
   },
-  "active": "ae9af1ac2262171a",
+  "active": "38c286857b048554",
   "lastOpenFiles": [
-    "third-post.md",
-    "US Economy, Equity, Gold, and the new FED chairman.md",
-    "markdown-style-guide.md",
-    "2026-02-07.md",
-    "second-post.md",
-    "tags-reference.md"
+    "Untitled.md",
+    "Untitled"
   ]
 }
