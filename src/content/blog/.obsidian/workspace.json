@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "907d8627beb42927",
+        "id": "8ab8d16ef586eb00",
         "type": "tabs",
         "children": [
           {
-            "id": "ae9af1ac2262171a",
+            "id": "d2e565cdbce404b7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "US Economy, Equity, Gold, and the new FED chairman.md",
+                "file": "Lost and Found.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "US Economy, Equity, Gold, and the new FED chairman"
+              "title": "Lost and Found"
             }
           }
         ]
@@ -183,13 +183,14 @@
       "bases:Create new base": false
     }
   },
-  "active": "ae9af1ac2262171a",
+  "active": "d2e565cdbce404b7",
   "lastOpenFiles": [
+    "US Economy, Equity, Gold, and the new FED chairman.md",
+    "Lost and Found.md",
+    "markdown-style-guide.md",
     "third-post.md",
     "tags-reference.md",
     "second-post.md",
-    "markdown-style-guide.md",
-    "US Economy, Equity, Gold, and the new FED chairman.md",
     "using-mdx.mdx",
     "Archive/using-mdx.mdx",
     "Archive/third-post.md",
