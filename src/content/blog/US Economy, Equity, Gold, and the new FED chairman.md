@@ -1,10 +1,11 @@
 ---
 title: My thoughts on US economy, Equity, Gold, new FED chairman
-description: My thoughts on recent macros after Trump's new FED appointment and many many many many many many many many many more more more more more more more morem more more moremore
+description: My thoughts on recent macros after Trump's new FED appointment, Gold Rally
 pubDate: Feb 03 2026
 heroImage: ../../assets/Feb06_HeaderImg.jpeg
 tags:
   - Macro
+draft: true
 ---
 _‘A weakened US Dollar keeps Gold up’_
 

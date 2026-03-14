@@ -3,7 +3,9 @@ import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-	const posts = (await getCollection('blog')).filter((p) => p.id !== 'tags-reference');
+	const posts = (await getCollection('blog')).filter(
+		(p) => p.id !== 'tags-reference' && !p.data.draft,
+	);
 	return posts.map((post) => ({
 		params: { slug: post.id },
 		props: post,
@@ -15,6 +17,6 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} showHero={false}>
 	<Content />
 </BlogPost>

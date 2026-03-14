@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "tags-reference.md",
+                "file": "US Economy, Equity, Gold, and the new FED chairman.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "tags-reference"
+              "title": "US Economy, Equity, Gold, and the new FED chairman"
             }
           }
         ]
@@ -186,10 +186,17 @@
   "active": "ae9af1ac2262171a",
   "lastOpenFiles": [
     "third-post.md",
-    "US Economy, Equity, Gold, and the new FED chairman.md",
-    "markdown-style-guide.md",
-    "2026-02-07.md",
+    "tags-reference.md",
     "second-post.md",
-    "tags-reference.md"
+    "markdown-style-guide.md",
+    "US Economy, Equity, Gold, and the new FED chairman.md",
+    "using-mdx.mdx",
+    "Archive/using-mdx.mdx",
+    "Archive/third-post.md",
+    "Archive/second-post.md",
+    "Archive/markdown-style-guide.md",
+    "Archive",
+    "untitled folder",
+    "2026-02-07.md"
   ]
 }

@@ -6,9 +6,13 @@ import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
 
-type Props = CollectionEntry<'blog'>['data'] & { heroImageCompact?: boolean };
+type Props = CollectionEntry<'blog'>['data'] & {
+	heroImageCompact?: boolean;
+	showHero?: boolean;
+};
 
-const { title, description, pubDate, updatedDate, heroImage, heroImageCompact } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heroImageCompact, showHero = true } =
+	Astro.props;
 ---
 
 <!doctype html>
@@ -21,7 +25,7 @@ const { title, description, pubDate, updatedDate, heroImage, heroImageCompact } 
 		<Header />
 		<main class="max-w-content mx-auto py-8 px-4 pb-16 sm:py-8 sm:px-6 md:py-12 md:px-8 lg:pt-20 lg:pb-16 lg:px-[6.75rem] box-border">
 			<article>
-				{heroImage && (
+				{heroImage && showHero && (
 					<div class:list={['mb-10 rounded-md overflow-hidden', heroImageCompact ? 'w-1/2 max-w-md mx-auto' : 'w-full']}>
 						<Image width={1200} height={630} src={heroImage} alt="" class="block w-full h-auto object-cover" />
 					</div>

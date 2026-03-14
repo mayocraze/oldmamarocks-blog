@@ -10,7 +10,7 @@ import { CATEGORIES } from '../../categories';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
 const allPosts = (await getCollection('blog'))
-	.filter((p) => p.id !== 'tags-reference')
+	.filter((p) => p.id !== 'tags-reference' && !p.data.draft)
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 // Category and year/month from URL (for initial active state; filtering is client-side for static)

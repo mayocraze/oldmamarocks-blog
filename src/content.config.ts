@@ -14,6 +14,8 @@ const blog = defineCollection({
 			heroImage: image().optional(),
 			// Tags for categorization (use without #, e.g. Motherhood, Investing)
 			tags: z.array(z.string()).optional().default([]),
+			// When true, treat this post as a draft (hidden from lists, routes, RSS)
+			draft: z.boolean().optional().default(false),
 		}),
 });
 
